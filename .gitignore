@@ -7,7 +7,7 @@ run*.sh
 training*/
 logs*
 log*
-data*
+data/
 checkpoints*
 database
 *.zip
