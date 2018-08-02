@@ -581,70 +581,24 @@ def restore_parts(path, model):
                 warn("{}: may contain invalid size of weight. skipping...".format(k))
 
 
-# def get_data_loaders(data_root, speaker_id, test_shuffle=True, mode=hparams.mode):
-#     data_loaders = {}
-#     for phase in ["train", "test"]:
-#         train = phase == "train"
-#
-#         Mel = FileSourceDataset(MelSpecDataSource(data_root,
-#                                                   speaker_id=speaker_id,
-#                                                   train=train,
-#                                                   test_size=hparams.test_size,
-#                                                   test_num_samples=hparams.test_num_samples,
-#                                                   random_state=hparams.random_state))
-#
-#         if train:
-#             lengths = np.array(X.file_data_source.lengths)
-#             # Prepare sampler
-#             sampler = PartialyRandomizedSimilarTimeLengthSampler(lengths, batch_size=hparams.batch_size)
-#             shuffle = False
-#         else:
-#             sampler = None
-#             shuffle = test_shuffle
-#
-#         dataset = PyTorchDataset_TDSV(Mel)
-#         data_loader = data_utils.DataLoader(dataset,
-#                                             batch_size=hparams.batch_size,
-#                                             num_workers=hparams.num_workers,
-#                                             sampler=sampler,
-#                                             shuffle=shuffle,
-#                                             collate_fn=collate_fn,
-#                                             pin_memory=hparams.pin_memory)
-#
-#         speaker_ids = {}
-#         for idx, (x, c, g) in enumerate(dataset):
-#             if g is not None:
-#                 try:
-#                     speaker_ids[g] += 1
-#                 except KeyError:
-#                     speaker_ids[g] = 1
-#         if len(speaker_ids) > 0:
-#             print("Speaker stats:", speaker_ids)
-#
-#         data_loaders[phase] = data_loader
-#
-#     return data_loaders
 
 
 if __name__ == "__main__":
     # args = docopt(__doc__)
     args = {
         "--checkpoint-dir": 'checkpoints',
-        "--checkpoint": '/home/zeng/work/mywork/GE2E/checkpoints/checkpoint_step000008000_ema.pth',#None,
+        "--checkpoint": None,
         "--restore-parts": None,
         "--mode": 'TD-SV',
         "--data-root": None,
         "--log-event-path": None,
         "--reset-optimizer": True,
         "--hparams": '',
-        "--keyword-id": '001'  # keyword
     }
     print("Command line args:\n", args)
     checkpoint_dir = args["--checkpoint-dir"]
     checkpoint_path = args["--checkpoint"]
     checkpoint_restore_parts = args["--restore-parts"]
-    speaker_id = args["--keyword-id"]
-    speaker_id = int(speaker_id) if speaker_id is not None else None
 
     data_root = args["--data-root"]
     if data_root is None:

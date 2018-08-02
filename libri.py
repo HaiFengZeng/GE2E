@@ -3,7 +3,7 @@ from os.path import join
 import os
 
 
-def parse_speaker_info(data_root='/home/zeng/下载/LibriSpeech'):
+def parse_speaker_info(data_root=''):
     speaker_info = join(data_root, 'SPEAKERS.TXT')
     with open(speaker_info) as f:
         lines = f.readlines()
