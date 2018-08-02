@@ -4,4 +4,4 @@
 - use datasets LibriSpeech (http://www.openslr.org/11)
 ## Result
 - similarity matrix looks like
-<img src= result/similarity.png width="600" >
+<img src= result/similarity.png >
