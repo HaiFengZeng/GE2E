@@ -4,4 +4,6 @@
 - use datasets LibriSpeech (http://www.openslr.org/11)
 ## Result
 - similarity matrix looks like
-<img src= result/similarity.png width="600" >
+<img src= result/similarity.png >
+- use N=20 speakers and M=10 utterances for training
+- my purpose is to get the speaker utterances' d-vector 
